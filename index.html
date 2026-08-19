@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Macharia Turns Forty</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;400;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,300;1,6..72,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='5'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.11'/%3E%3C/svg%3E");
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #231F16;
+      min-height: 100vh;
+      font-family: 'Libre Franklin', system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: #0E2545; text-decoration: none; }
+    a:hover { color: #2C5686; }
+
+    /* ── Card ── */
+    .card {
+      max-width: 440px;
+      margin: 0 auto;
+      background: #DBD6CE;
+      background-image: var(--paper);
+      box-shadow: 0 0 90px rgba(0,0,0,.55);
+    }
+
+    /* ── Header image ── */
+    .header { background: #231F16; padding: 26px 26px 30px; }
+    .header img { display: block; width: 100%; height: auto; box-shadow: 0 18px 40px rgba(0,0,0,.55); }
+
+    /* ── Title block ── */
+    .title-block { padding: 34px 30px 0; text-align: center; }
+    .title-block h1 { margin: 12px 0 0; font: 400 48px/1 Newsreader, Georgia, serif; color: #0E2545; }
+    .title-block .turns { margin: 20px 0 0; font: 600 9px/1 'Libre Franklin', sans-serif; letter-spacing: .4em; text-transform: uppercase; color: #0E2545; }
+    .title-block .forty { margin: 12px 0 0; font: 400 70px/.9 Newsreader, Georgia, serif; letter-spacing: -.02em; color: #17140F; }
+    .title-block .rule { width: 46px; height: 4px; background: #0E2545; margin: 26px auto 0; }
+
+    /* ── Details ── */
+    .details { padding: 30px 30px 0; }
+
+    .detail-row { display: flex; gap: 14px; align-items: flex-start; }
+    .detail-row.border-below { padding: 0 0 16px; border-bottom: 1px dotted rgba(14,37,69,.4); }
+    .detail-row.border-above { margin: 26px 0 0; padding: 16px 0 0; border-top: 1px dotted rgba(14,37,69,.4); }
+    .detail-row.plain { padding: 16px 0 0; }
+
+    .num {
+      flex: 0 0 22px; height: 22px;
+      background: #0E2545; color: #DBD6CE;
+      font: 700 11px/22px 'Libre Franklin', sans-serif;
+      text-align: center;
+    }
+
+    .detail-text { flex: 1; }
+    .detail-text .label { font: 700 14.5px/1.3 'Libre Franklin', sans-serif; letter-spacing: .04em; text-transform: uppercase; color: #17140F; }
+    .detail-text .value { margin: 4px 0 0; font: italic 300 16px/1.45 Newsreader, Georgia, serif; color: #4A443A; }
+
+    .action-btns { display: flex; gap: 9px; margin: 24px 0 0; }
+    .action-btn {
+      flex: 1; text-align: center;
+      padding: 13px 10px;
+      border: 1px solid rgba(14,37,69,.5);
+      font: 600 9px/1 'Libre Franklin', sans-serif;
+      letter-spacing: .2em; text-transform: uppercase;
+      color: #0E2545;
+      transition: background .15s, color .15s;
+    }
+    .action-btn:hover { background: #0E2545; color: #DBD6CE; }
+
+    /* ── Surprise banner ── */
+    .surprise { margin: 30px 0 0; background: #0E2545; padding: 16px 30px; text-align: center; }
+    .surprise p { font: italic 300 16px/1.5 Newsreader, Georgia, serif; color: #DBD6CE; }
+
+    /* ── Form ── */
+    .form-wrap { padding: 38px 30px 46px; }
+
+    .field label {
+      display: block;
+      font: 600 10px/1 'Libre Franklin', sans-serif;
+      letter-spacing: .24em; text-transform: uppercase;
+      color: #4A443A;
+    }
+    .field input {
+      width: 100%; margin: 10px 0 0;
+      padding: 5px 0 10px;
+      border: 0; border-bottom: 1px solid rgba(14,37,69,.4); border-radius: 0;
+      background: transparent;
+      font: 300 19px/1.4 Newsreader, Georgia, serif;
+      color: #17140F; outline: none;
+    }
+    .field input:focus { border-bottom-color: #0E2545; }
+
+    .field textarea {
+      width: 100%; margin: 10px 0 0;
+      padding: 11px 12px;
+      border: 1px solid rgba(14,37,69,.4); border-radius: 0;
+      background: rgba(255,255,255,.34);
+      font: 300 16px/1.65 Newsreader, Georgia, serif;
+      color: #17140F; outline: none; resize: vertical;
+    }
+    .field textarea:focus { border-color: #0E2545; }
+
+    /* ── Going buttons ── */
+    .going-btns { display: flex; gap: 10px; margin: 26px 0 0; }
+    .going-btn {
+      flex: 1; padding: 16px 12px; border-radius: 0;
+      font: 600 10px/1.3 'Libre Franklin', sans-serif;
+      letter-spacing: .16em; text-transform: uppercase;
+      cursor: pointer; transition: all .18s ease;
+      border: 1px solid rgba(14,37,69,.4);
+      background: transparent; color: #4A443A;
+    }
+    .going-btn.active { border-color: #0E2545; background: #0E2545; color: #DBD6CE; }
+
+    /* ── Song section ── */
+    .song-section { margin: 32px 0 0; border-top: 1px dotted rgba(14,37,69,.4); padding: 28px 0 0; }
+    .song-section.hidden { display: none; }
+
+    .vinyl { display: flex; align-items: center; justify-content: center; margin: 2px 0 22px; }
+    .vinyl-sleeve {
+      width: 78px; height: 78px;
+      background: #0E2545;
+      box-shadow: inset 0 0 0 1px rgba(219,214,206,.25);
+      display: flex; align-items: center; justify-content: center;
+      position: relative; z-index: 2;
+    }
+    .vinyl-sleeve-inner {
+      width: 26px; height: 26px; border-radius: 50%;
+      background: #DBD6CE; background-image: var(--paper);
+    }
+    .vinyl-disc {
+      width: 78px; height: 78px; margin-left: -26px; border-radius: 50%;
+      background:
+        radial-gradient(circle at 50% 50%, #0E2545 0 21%, transparent 21.4%),
+        repeating-radial-gradient(circle at 50% 50%, rgba(255,255,255,.07) 0 1px, rgba(0,0,0,0) 1px 4px),
+        radial-gradient(circle at 32% 26%, rgba(255,255,255,.16), rgba(255,255,255,0) 52%),
+        radial-gradient(circle at 50% 50%, #1A160F 0 100%);
+      box-shadow: 0 6px 16px rgba(0,0,0,.3), inset 0 0 0 1px rgba(0,0,0,.5);
+      display: flex; align-items: center; justify-content: center;
+      position: relative; z-index: 1;
+    }
+    .vinyl-disc-inner {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: #DBD6CE; background-image: var(--paper);
+    }
+
+    .song-heading { font: 400 26px/1.15 Newsreader, Georgia, serif; color: #0E2545; text-align: center; }
+    .song-desc { margin: 16px 0 0; font: 300 15px/1.75 'Libre Franklin', sans-serif; color: #4A443A; }
+    .song-field { margin: 26px 0 0; }
+    .song-field + .song-field { margin-top: 22px; }
+
+    .sinatra { margin: 30px 0 0; padding: 26px 0 0; border-top: 1px dotted rgba(14,37,69,.4); text-align: center; }
+    .sinatra-square { width: 14px; height: 14px; margin: 0 auto 18px; background: #0E2545; }
+    .sinatra-quote { font: italic 300 17px/1.85 Newsreader, Georgia, serif; color: #17140F; }
+    .sinatra-attr { margin: 18px 0 0; font: 600 9.5px/1.6 'Libre Franklin', sans-serif; letter-spacing: .22em; text-transform: uppercase; color: #5C5648; }
+
+    /* ── Error ── */
+    .error-msg { margin: 20px 0 0; font: 400 13.5px/1.6 'Libre Franklin', sans-serif; color: #8E2F1E; }
+    .error-msg.hidden { display: none; }
+
+    /* ── Submit ── */
+    .submit-btn {
+      display: block; width: 100%;
+      margin: 28px 0 0; padding: 19px 24px;
+      border: 0; border-radius: 0;
+      background: #0E2545; color: #DBD6CE;
+      font: 600 11px/1 'Libre Franklin', sans-serif;
+      letter-spacing: .24em; text-transform: uppercase;
+      cursor: pointer; transition: background .15s;
+    }
+    .submit-btn:hover { background: #1B3F6B; }
+    .submit-btn:disabled { opacity: .6; cursor: default; }
+
+    .reply-by { margin: 16px 0 0; font: 600 12px/1 'Libre Franklin', sans-serif; letter-spacing: .2em; text-transform: uppercase; color: #4A443A; text-align: center; }
+
+    /* ── Sent state ── */
+    .sent-state { padding: 52px 34px 56px; text-align: center; display: none; }
+    .sent-state.visible { display: block; }
+    .sent-square { width: 22px; height: 22px; margin: 0 auto; background: #0E2545; }
+    .sent-title { margin: 24px 0 0; font: 700 13px/1.4 'Libre Franklin', sans-serif; letter-spacing: .14em; text-transform: uppercase; color: #0E2545; }
+    .sent-body { margin: 12px 0 0; font: italic 300 17px/1.6 Newsreader, Georgia, serif; color: #4A443A; }
+    .again-btn {
+      margin: 26px 0 0; padding: 14px 26px;
+      border: 1px solid rgba(14,37,69,.45); border-radius: 0;
+      background: transparent; color: #0E2545;
+      font: 600 9px/1 'Libre Franklin', sans-serif;
+      letter-spacing: .22em; text-transform: uppercase;
+      cursor: pointer; transition: background .15s, color .15s;
+    }
+    .again-btn:hover { background: #0E2545; color: #DBD6CE; }
+
+    /* ── Footer ── */
+    .footer { border-top: 1px solid rgba(14,37,69,.3); margin: 0 30px; padding: 24px 0 34px; text-align: center; }
+    .footer p { font: 600 9.5px/1.9 'Libre Franklin', sans-serif; letter-spacing: .3em; text-transform: uppercase; color: #5C5648; }
+  </style>
+</head>
+<body>
+  <div style="background:#231F16;min-height:100vh">
+    <div class="card">
+
+      <!-- Header image -->
+      <div class="header">
+        <img src="assets/header.png" alt="Macharia — 40">
+      </div>
+
+      <!-- Title -->
+      <div class="title-block">
+        <h1>Macharia</h1>
+        <p class="turns">TURNS</p>
+        <div class="forty">Forty</div>
+        <div class="rule"></div>
+      </div>
+
+      <!-- Details -->
+      <div class="details">
+        <div class="detail-row border-below">
+          <div class="num">1</div>
+          <div class="detail-text">
+            <p class="label">Friday · 28 August · 2026</p>
+            <p class="value">5:30pm</p>
+          </div>
+        </div>
+
+        <div class="detail-row plain">
+          <div class="num">2</div>
+          <div class="detail-text">
+            <p class="label">46 Kitusuru Ridge Villas</p>
+            <p class="value">Kitusuru · Nairobi</p>
+          </div>
+        </div>
+
+        <div class="action-btns">
+          <a class="action-btn"
+             href="https://www.google.com/maps/search/?api=1&query=46+Kitusuru+Ridge+Villas+Nairobi"
+             target="_blank" rel="noopener">Directions</a>
+          <a class="action-btn" id="ics-link" href="#" download="Macharia-Forty.ics">Add to calendar</a>
+        </div>
+
+        <div class="detail-row border-above">
+          <div class="num">3</div>
+          <div class="detail-text">
+            <p class="label">Dress Code</p>
+            <p class="value">Come as you are</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Surprise banner -->
+      <div class="surprise">
+        <p>He has no idea — please arrive by 5:15.</p>
+      </div>
+
+      <!-- RSVP form -->
+      <div id="form-wrap" class="form-wrap">
+        <div class="field">
+          <label for="name">Your name</label>
+          <input type="text" id="name" autocomplete="name">
+        </div>
+
+        <div class="going-btns">
+          <button class="going-btn" id="btn-yes" onclick="setGoing(true)">Yes, I'll be there</button>
+          <button class="going-btn" id="btn-no" onclick="setGoing(false)">Can't make it</button>
+        </div>
+
+        <!-- Song section -->
+        <div class="song-section" id="song-section">
+          <div class="vinyl">
+            <div class="vinyl-sleeve"><div class="vinyl-sleeve-inner"></div></div>
+            <div class="vinyl-disc"><div class="vinyl-disc-inner"></div></div>
+          </div>
+          <p class="song-heading">Put a song on his record</p>
+          <p class="song-desc">Music is a big part of Macharia's world. Choose a song you'd like him to hear, each with a story, memory or reason behind the choice.</p>
+
+          <div class="field song-field">
+            <label for="song-title">Song title</label>
+            <input type="text" id="song-title">
+          </div>
+          <div class="field song-field">
+            <label for="song-artist">Artist / performer</label>
+            <input type="text" id="song-artist">
+          </div>
+          <div class="field song-field">
+            <label for="song-version">Version / Recording / Spotify link</label>
+            <input type="text" id="song-version">
+          </div>
+          <div class="field song-field">
+            <label for="song-why">Why this song for Macharia?</label>
+            <textarea id="song-why" rows="3"></textarea>
+          </div>
+
+          <div class="sinatra">
+            <div class="sinatra-square"></div>
+            <p class="sinatra-quote">
+              For what is a man, what has he got<br>
+              If not himself, then he has naught<br>
+              To say the words he truly feels<br>
+              And not the words of one who kneels<br>
+              The record shows I took the blows<br>
+              And did it my way
+            </p>
+            <p class="sinatra-attr">~ My Way, Frank Sinatra</p>
+          </div>
+        </div>
+
+        <p class="error-msg hidden" id="error-msg"></p>
+
+        <button class="submit-btn" id="submit-btn" onclick="submitForm()">Send reply</button>
+        <p class="reply-by">Kindly reply by 21 August</p>
+      </div>
+
+      <!-- Sent state -->
+      <div class="sent-state" id="sent-state">
+        <div class="sent-square"></div>
+        <p class="sent-title" id="done-title"></p>
+        <p class="sent-body" id="done-body"></p>
+        <button class="again-btn" onclick="again()">Reply again</button>
+      </div>
+
+      <!-- Footer -->
+      <div class="footer">
+        <p>Macharia · Forty · MMXXVI</p>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby8geEAA-mZ7yyrnHUWx7t8_1PtSRrRN5lurZzr8s6WTYYWRM8eLtiSz_2ZzA6UScvw/exec';
+    const STORAGE_KEY = 'forty-rsvp-draft';
+
+    let going = null;
+
+    // ── ICS calendar ──
+    (function () {
+      const lines = [
+        'BEGIN:VCALENDAR', 'VERSION:2.0',
+        'PRODID:-//Forty//Invitation//EN', 'CALSCALE:GREGORIAN',
+        'BEGIN:VEVENT',
+        'UID:macharia-forty-2026@invitation',
+        'DTSTAMP:20260801T090000Z',
+        'DTSTART:20260828T143000Z',
+        'DTEND:20260828T200000Z',
+        "SUMMARY:Macharia's 40th",
+        'LOCATION:46 Kitusuru Ridge Villas\\, Kitusuru\\, Nairobi',
+        'DESCRIPTION:Dinner and drinks from 5:30pm. Bring a song.',
+        'END:VEVENT', 'END:VCALENDAR'
+      ];
+      document.getElementById('ics-link').href =
+        'data:text/calendar;charset=utf-8,' + encodeURIComponent(lines.join('\r\n'));
+    })();
+
+    // ── Restore draft ──
+    try {
+      const d = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
+      if (d) {
+        if (d.name)    document.getElementById('name').value = d.name;
+        if (d.title)   document.getElementById('song-title').value = d.title;
+        if (d.artist)  document.getElementById('song-artist').value = d.artist;
+        if (d.version) document.getElementById('song-version').value = d.version;
+        if (d.why)     document.getElementById('song-why').value = d.why;
+        if (d.going !== undefined && d.going !== null) setGoing(d.going);
+      }
+    } catch (e) {}
+
+    document.querySelectorAll('input, textarea').forEach(el => el.addEventListener('input', saveDraft));
+
+    function saveDraft() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify({
+          name:    document.getElementById('name').value,
+          title:   document.getElementById('song-title').value,
+          artist:  document.getElementById('song-artist').value,
+          version: document.getElementById('song-version').value,
+          why:     document.getElementById('song-why').value,
+          going
+        }));
+      } catch (e) {}
+    }
+
+    function setGoing(val) {
+      going = val;
+      document.getElementById('btn-yes').classList.toggle('active', val === true);
+      document.getElementById('btn-no').classList.toggle('active', val === false);
+      document.getElementById('song-section').classList.toggle('hidden', val === false);
+      clearError();
+      saveDraft();
+    }
+
+    function showError(msg) {
+      const el = document.getElementById('error-msg');
+      el.textContent = msg;
+      el.classList.remove('hidden');
+    }
+
+    function clearError() {
+      document.getElementById('error-msg').classList.add('hidden');
+    }
+
+    async function submitForm() {
+      const name   = document.getElementById('name').value.trim();
+      const title  = document.getElementById('song-title').value.trim();
+      const artist = document.getElementById('song-artist').value.trim();
+
+      if (!name)        { showError('Your name, so we know who replied.'); return; }
+      if (going === null) { showError('Let us know if you can come.'); return; }
+      if (going && (!title || !artist)) { showError('A song title and artist, please.'); return; }
+
+      const btn = document.getElementById('submit-btn');
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+
+      const data = {
+        name,
+        attending: going ? "Yes, I'll be there" : "Can't make it",
+        songTitle: going ? title  : '',
+        artist:    going ? artist : '',
+        version:   going ? document.getElementById('song-version').value.trim() : '',
+        why:       going ? document.getElementById('song-why').value.trim()     : ''
+      };
+
+      try {
+        await fetch(SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain' },
+          body: JSON.stringify(data)
+        });
+      } catch (e) {}
+
+      try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
+
+      document.getElementById('form-wrap').style.display = 'none';
+      const sentEl = document.getElementById('sent-state');
+      sentEl.classList.add('visible');
+      document.getElementById('done-title').textContent = going
+        ? "It's on the record"
+        : 'Thank you for telling us';
+      document.getElementById('done-body').textContent = going
+        ? 'See you on the twenty-eighth.'
+        : 'You will be missed — he will hear that you wrote.';
+    }
+
+    function again() {
+      going = null;
+      ['name','song-title','song-artist','song-version','song-why'].forEach(id => {
+        document.getElementById(id).value = '';
+      });
+      document.getElementById('btn-yes').classList.remove('active');
+      document.getElementById('btn-no').classList.remove('active');
+      document.getElementById('song-section').classList.remove('hidden');
+      clearError();
+      const btn = document.getElementById('submit-btn');
+      btn.disabled = false;
+      btn.textContent = 'Send reply';
+      document.getElementById('sent-state').classList.remove('visible');
+      document.getElementById('form-wrap').style.display = '';
+    }
+  </script>
+</body>
+</html>
