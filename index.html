@@ -188,6 +188,7 @@
     .sent-title { margin: 24px 0 0; font: 700 13px/1.4 'Libre Franklin', sans-serif; letter-spacing: .14em; text-transform: uppercase; color: #0E2545; }
     .sent-body { margin: 12px 0 0; font: italic 300 17px/1.6 Newsreader, Georgia, serif; color: #4A443A; }
     .sent-quote { margin: 28px 0 0; padding: 24px 0 0; border-top: 1px dotted rgba(14,37,69,.4); }
+    .sent-quote.hidden { display: none; }
     .sent-quote-text { font: italic 300 17px/1.75 Newsreader, Georgia, serif; color: #17140F; }
     .sent-quote-attr { margin: 12px 0 0; font: 600 9.5px/1 'Libre Franklin', sans-serif; letter-spacing: .22em; text-transform: uppercase; color: #5C5648; }
 
@@ -320,7 +321,7 @@
         <div class="sent-square"></div>
         <p class="sent-title" id="done-title"></p>
         <p class="sent-body" id="done-body"></p>
-        <div class="sent-quote">
+        <div class="sent-quote hidden" id="sent-quote">
           <p class="sent-quote-text">"When I let go of what I am, I become what I might be."</p>
           <p class="sent-quote-attr">— Lao Tzu</p>
         </div>
@@ -391,7 +392,7 @@
       going = val;
       document.getElementById('btn-yes').classList.toggle('active', val === true);
       document.getElementById('btn-no').classList.toggle('active', val === false);
-      document.getElementById('song-section').classList.toggle('hidden', val === false);
+      document.getElementById('song-section').classList.remove('hidden');
       clearError();
       saveDraft();
     }
@@ -413,7 +414,8 @@
 
       if (!name)        { showError('Your name, so we know who replied.'); return; }
       if (going === null) { showError('Let us know if you can come.'); return; }
-      if (going && (!title || !artist)) { showError('A song title and artist, please.'); return; }
+      const hasSong = title || artist;
+      if ((going || hasSong) && (!title || !artist)) { showError('A song title and artist, please.'); return; }
 
       const btn = document.getElementById('submit-btn');
       btn.disabled = true;
@@ -422,10 +424,10 @@
       const data = {
         name,
         attending: going ? "Yes, I'll be there" : "Can't make it",
-        songTitle: going ? title  : '',
-        artist:    going ? artist : '',
-        version:   going ? document.getElementById('song-version').value.trim() : '',
-        why:       going ? document.getElementById('song-why').value.trim()     : ''
+        songTitle: title,
+        artist:    artist,
+        version:   document.getElementById('song-version').value.trim(),
+        why:       document.getElementById('song-why').value.trim()
       };
 
       try {
@@ -448,6 +450,7 @@
       document.getElementById('done-body').textContent = going
         ? 'See you on the 28th of August.'
         : 'You will be missed — he will hear that you wrote.';
+      document.getElementById('sent-quote').classList.toggle('hidden', !going);
     }
 
     function again() {
